@@ -6,29 +6,30 @@ body{
 }
 
 h1{
-    color: #254472;
-    font-size: 50px;
+    color: #0f172a;
+    font-size: 42px;
 }
 
 p{
-    font-size: 22px;
-    color: #444;
+    font-size: 18px;
+    color: #475569;
 }
 
 textarea{
+    color: #1e293b;
     width: 500px;
     height: 120px;
     padding: 15px;
     font-size: 18px;
     border-radius: 10px;
-    border: 2px solid #0167ff;
+    border: 2px solid #2563eb;
 }
 
 button{
     margin-top:20px;
     padding:15px 35px;
     font-size:18px;
-    background-color:#091d3a;
+    background-color:#0f172a;
     color:white;
     border:none;
     border-radius:10px;
@@ -36,5 +37,5 @@ button{
 }
 
 button:hover{
-    background-color:#0a9487;
+    background-color:#2563eb;
 }
