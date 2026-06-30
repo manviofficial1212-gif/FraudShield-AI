@@ -1,12 +1,12 @@
 body{
     font-family: Arial, sans-serif;
-    background-color: #f4f7fb;
+    background-color: #ade3fc;
     text-align: center;
     margin-top: 60px;
 }
 
 h1{
-    color: #0b5ed7;
+    color: #254472;
     font-size: 50px;
 }
 
@@ -21,14 +21,14 @@ textarea{
     padding: 15px;
     font-size: 18px;
     border-radius: 10px;
-    border: 2px solid #0b5ed7;
+    border: 2px solid #0167ff;
 }
 
 button{
     margin-top:20px;
     padding:15px 35px;
     font-size:18px;
-    background-color:#0b5ed7;
+    background-color:#091d3a;
     color:white;
     border:none;
     border-radius:10px;
@@ -36,5 +36,5 @@ button{
 }
 
 button:hover{
-    background-color:#084298;
+    background-color:#0a9487;
 }
