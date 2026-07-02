@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,8 +11,13 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -21,22 +27,27 @@
 
     <div class="container">
 
-        <!-- Logo Section -->
+        <!-- ================= Logo ================= -->
+
         <div class="logo-container">
 
             <img src="../assets/logo.png" alt="FraudShield AI Logo">
 
             <div class="title">
+
                 <h1>FraudShield <span>AI</span></h1>
 
                 <p>
-                    Detect phishing, scam messages, fake links and online fraud using Artificial Intelligence.
+                    Detect phishing, scam messages, fake links and online fraud
+                    using Artificial Intelligence.
                 </p>
+
             </div>
 
         </div>
 
-        <!-- Main Card -->
+        <!-- ================= Main Card ================= -->
+
         <div class="card">
 
             <h2>Analyze Suspicious Message</h2>
@@ -47,84 +58,129 @@
             ></textarea>
 
             <button id="analyzeBtn">
-
-                🔍 Analyze Scam
-
+                <i class="fas fa-magnifying-glass"></i>
+                Analyze Scam
             </button>
 
         </div>
 
-        <!-- Features -->
+        <!-- ================= AI Services ================= -->
+
         <div class="features">
 
             <div class="feature-card">
 
-                <h3>⚡ AI Detection</h3>
+                <i class="fas fa-user-shield feature-icon"></i>
+
+                <h3>Digital Arrest Detection</h3>
 
                 <p>
-                    Instantly detects phishing and scam patterns.
+                    Detect fake police, CBI, ED and government impersonation scams.
                 </p>
 
             </div>
 
             <div class="feature-card">
 
-                <h3>🔒 Privacy First</h3>
+                <i class="fas fa-qrcode feature-icon"></i>
+
+                <h3>QR Scam Scanner</h3>
 
                 <p>
-                    Your messages are analyzed securely and never stored.
+                    Scan suspicious QR codes before making payments.
                 </p>
 
             </div>
 
             <div class="feature-card">
 
-                <h3>📊 Risk Score</h3>
+                <i class="fas fa-link feature-icon"></i>
+
+                <h3>Malicious Link Check</h3>
 
                 <p>
-                    Receive a confidence score and scam explanation.
+                    Identify phishing websites and fake login pages instantly.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fas fa-brain feature-icon"></i>
+
+                <h3>AI Risk Analysis</h3>
+
+                <p>
+                    Generate scam probability score with AI-powered explanation.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fas fa-phone-volume feature-icon"></i>
+
+                <h3>Call Scam Detection</h3>
+
+                <p>
+                    Detect suspicious phone numbers and spoofed caller identities.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <i class="fas fa-money-bill-wave feature-icon"></i>
+
+                <h3>Counterfeit Alert</h3>
+
+                <p>
+                    Future-ready module for fake currency reporting and alerts.
                 </p>
 
             </div>
 
         </div>
 
-        <!-- Footer -->
+        <!-- ================= Footer ================= -->
 
         <footer>
 
             <p>
-                🚀 Built by Manvi Gupta
+                🚀 Built by Manvi Gupta | ET AI Hackathon 2.0
             </p>
 
         </footer>
 
     </div>
-<div id="loadingScreen" class="loading-screen">
 
-    <div class="cyber-grid"></div>
+    <!-- ================= Loading Screen ================= -->
 
-    <div class="scanner-card">
+    <div id="loadingScreen" class="loading-screen">
 
-        <div class="scanner-circle">
+        <div class="cyber-grid"></div>
 
-            <div class="scanner-ring"></div>
+        <div class="scanner-card">
 
-            <div class="scanner-core"></div>
+            <div class="scanner-circle">
+
+                <div class="scanner-ring"></div>
+
+                <div class="scanner-core"></div>
+
+            </div>
+
+            <h2>FraudShield AI</h2>
+
+            <h3 id="loadingText">
+
+                Initializing AI...
+
+            </h3>
 
         </div>
 
-        <h2>FraudShield AI</h2>
-
-        <h3 id="loadingText">
-
-            Initializing AI...
-
-        </h3>
-
     </div>
-
-</div>
 
     <script src="script.js"></script>
 

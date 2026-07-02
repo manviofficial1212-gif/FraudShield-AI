@@ -1,7 +1,9 @@
 const button = document.getElementById("analyzeBtn");
 const textarea = document.getElementById("message");
+const loadingScreen = document.getElementById("loadingScreen");
+const loadingText = document.getElementById("loadingText");
 
-button.addEventListener("click", function () {
+button.addEventListener("click", () => {
 
     const message = textarea.value.trim();
 
@@ -10,13 +12,41 @@ button.addEventListener("click", function () {
         return;
     }
 
-    button.innerHTML="⏳ Analyzing...";
-    button.disabled=true;
+    loadingScreen.style.display = "flex";
 
-    setTimeout(function(){
+    const steps = [
+        "🤖 Initializing AI...",
+        "📨 Reading message...",
+        "🔍 Detecting phishing keywords...",
+        "🛡 Checking suspicious links...",
+        "🧠 Running FraudShield AI...",
+        "📊 Calculating Risk Score..."
+    ];
 
-        button.innerHTML="✅ Scam Detected";
+    let index = 0;
 
-    },2500);
+    loadingText.innerHTML = steps[index];
+
+    const interval = setInterval(() => {
+
+        index++;
+
+        if(index < steps.length){
+
+            loadingText.innerHTML = steps[index];
+
+        }
+
+    },1000);
+
+    setTimeout(() => {
+
+        clearInterval(interval);
+
+        loadingScreen.style.display = "none";
+
+        alert("✅ AI Analysis Complete!");
+
+    },6000);
 
 });
