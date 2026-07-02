@@ -1,41 +1,129 @@
-body{
-    font-family: Arial, sans-serif;
-    background-color: #ade3fc;
-    text-align: center;
-    margin-top: 60px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-h1{
-    color: #0f172a;
-    font-size: 42px;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(circle at center, #061124 0%, #020712 100%);
+  background-color: #020712;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-p{
-    font-size: 18px;
-    color: #475569;
+.main-container {
+  width: 100%;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 40px; /* Aligns content slightly to the left as seen in the image */
 }
 
-textarea{
-    color: #1e293b;
-    width: 500px;
-    height: 120px;
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 2px solid #2563eb;
+/* Header & Typography */
+.header-section {
+  margin-bottom: 40px;
 }
 
-button{
-    margin-top:20px;
-    padding:15px 35px;
-    font-size:18px;
-    background-color:#0f172a;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-button:hover{
-    background-color:#2563eb;
+.shield-logo {
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+}
+
+.brand-title h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.tagline {
+  font-size: 1.15rem;
+  color: #f1f5f9;
+  line-height: 1.4;
+}
+
+/* Form Elements */
+.action-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+textarea {
+  width: 240px;
+  height: 50px;
+  background-color: #ffffff;
+  border: 1px solid #94a3b8;
+  border-radius: 2px;
+  padding: 6px 8px;
+  font-family: monospace;
+  font-size: 14px;
+  color: #000000;
+  resize: both;
+}
+
+textarea::placeholder {
+  color: #64748b;
+}
+
+.analyze-btn {
+  background-color: #f1f5f9;
+  color: #000000;
+  border: 1px solid #cbd5e1;
+  border-radius: 2px;
+  padding: 4px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.analyze-btn:hover {
+  background-color: #e2e8f0;
+}
+
+/* Feature Grid Stack */
+.info-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.info-block .icon {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.info-block h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+}
+
+.info-block p {
+  font-size: 1.1rem;
+  color: #e2e8f0;
 }

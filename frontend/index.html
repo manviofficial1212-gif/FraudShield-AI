@@ -1,90 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FraudShield AI — Detect scams before they steal your money</title>
+<style>
+  :root{
+    --bg-deep: #04070f;
+    --bg-panel: rgba(10, 16, 32, 0.55);
+    --border-glow: rgba(72, 149, 255, 0.45);
+    --blue: #3aa8ff;
+    --blue-bright: #58c4ff;
+    --purple: #7b5cff;
+    --text-main: #f2f6ff;
+    --text-dim: #93a2c2;
+  }
 
-<title>FraudShield AI</title>
+  *{ box-sizing: border-box; }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  html, body{
+    margin:0;
+    padding:0;
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+  }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  body{
+    position: relative;
+    overflow-x: hidden;
+    padding: 60px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-<link rel="stylesheet" href="style.css">
+  /* ---------- Background ---------- */
+  .bg-canvas{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 6% 10%, rgba(40,110,220,0.35), transparent 22%),
+      radial-gradient(circle at 92% 85%, rgba(90,60,220,0.18), transparent 35%),
+      linear-gradient(180deg, #05070f 0%, #05060d 55%, #06070f 100%);
+  }
 
+  .stars{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      radial-gradient(1.5px 1.5px at 10% 20%, rgba(255,255,255,0.8) 50%, transparent 51%),
+      radial-gradient(1px 1px at 20% 60%, rgba(255,255,255,0.6) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 35% 15%, rgba(255,255,255,0.7) 50%, transparent 51%),
+      radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.5) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 65% 30%, rgba(255,255,255,0.7) 50%, transparent 51%),
+      radial-gradient(1px 1px at 75% 65%, rgba(255,255,255,0.5) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 88% 12%, rgba(255,255,255,0.8) 50%, transparent 51%),
+      radial-gradient(1px 1px at 92% 50%, rgba(255,255,255,0.6) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 15% 85%, rgba(255,255,255,0.6) 50%, transparent 51%),
+      radial-gradient(1px 1px at 45% 45%, rgba(255,255,255,0.5) 50%, transparent 51%);
+    background-repeat: repeat;
+    background-size: 600px 600px;
+    opacity: 0.7;
+  }
+
+  .waves{
+    position: fixed;
+    left:0; right:0; bottom:0;
+    height: 45vh;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ---------- Header ---------- */
+  .header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 26px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+
+  .shield-icon{
+    width: 96px;
+    height: 108px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 22px rgba(58,168,255,0.55));
+  }
+
+  .title-block h1{
+    margin: 0;
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .title-block h1 span{
+    background: linear-gradient(90deg, #4fb2ff, #7bc9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .tagline{
+    margin: 10px 0 0;
+    font-size: 20px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .tagline .accent{
+    color: var(--blue-bright);
+  }
+
+  /* ---------- Panel ---------- */
+  .panel{
+    width: 100%;
+    max-width: 1040px;
+    margin-top: 46px;
+    padding: 34px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(20,30,55,0.55), rgba(10,14,26,0.35));
+    border: 1px solid var(--border-glow);
+    box-shadow:
+      0 0 0 1px rgba(72,149,255,0.08),
+      0 0 40px rgba(50,110,230,0.18),
+      inset 0 0 60px rgba(60,110,220,0.05);
+    backdrop-filter: blur(6px);
+  }
+
+  .textarea-wrap{
+    position: relative;
+    border: 1px solid rgba(120,150,200,0.35);
+    border-radius: 12px;
+    background: rgba(4,7,16,0.55);
+    padding: 18px 20px;
+  }
+
+  .textarea-icon{
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    color: var(--blue);
+  }
+
+  textarea{
+    width: 100%;
+    min-height: 190px;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: vertical;
+    color: var(--text-main);
+    font-size: 17px;
+    font-family: inherit;
+    padding-left: 32px;
+    padding-top: 1px;
+  }
+
+  textarea::placeholder{
+    color: #7c8bab;
+  }
+
+  .analyze-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 460px;
+    margin: 28px auto 0;
+    padding: 18px 28px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, #2f8dff 0%, #6a5cff 55%, #8a4dff 100%);
+    box-shadow: 0 0 28px rgba(100,110,255,0.45), 0 8px 20px rgba(20,30,70,0.4);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .analyze-btn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 0 36px rgba(110,120,255,0.6), 0 10px 24px rgba(20,30,70,0.45);
+  }
+
+  .analyze-btn:focus-visible{
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  .analyze-btn svg{
+    width: 20px;
+    height: 20px;
+  }
+
+  /* ---------- Feature cards ---------- */
+  .features{
+    width: 100%;
+    max-width: 1040px;
+    margin-top: 34px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .feature-card{
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(90,130,200,0.3);
+    background: rgba(8,13,26,0.4);
+  }
+
+  .feature-icon{
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border: 1px solid rgba(90,150,255,0.45);
+    background: radial-gradient(circle, rgba(50,100,200,0.25), transparent 70%);
+    color: var(--blue-bright);
+  }
+
+  .feature-icon svg{
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-card h3{
+    margin: 4px 0 6px;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .feature-card p{
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.45;
+  }
+
+  /* ---------- Footer badge ---------- */
+  .footer-badge{
+    margin-top: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(90,150,255,0.4);
+    background: rgba(8,13,26,0.45);
+    font-size: 15px;
+    color: var(--text-dim);
+  }
+
+  .footer-badge svg{
+    width: 18px;
+    height: 18px;
+    color: var(--blue-bright);
+  }
+
+  .footer-badge .brand{
+    color: var(--blue-bright);
+    font-weight: 700;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 760px){
+    .header{ flex-direction: column; text-align: center; }
+    .title-block h1{ font-size: 38px; }
+    .tagline{ font-size: 16px; text-align: center; }
+    .features{ grid-template-columns: 1fr; }
+    .panel{ padding: 22px; }
+  }
+</style>
 </head>
-
 <body>
 
-<div class="background"></div>
+  <div class="bg-canvas"></div>
+  <div class="stars"></div>
 
-<div class="container">
+  <svg class="waves" viewBox="0 0 1536 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,220 C 200,180 350,260 550,220 C 750,180 900,140 1100,190 C 1300,240 1450,200 1536,220 L1536,400 L0,400 Z"
+          fill="none" stroke="rgba(70,130,255,0.35)" stroke-width="1.5"/>
+    <path d="M0,260 C 220,300 380,220 600,260 C 820,300 980,340 1180,290 C 1350,250 1450,280 1536,260 L1536,400 L0,400 Z"
+          fill="none" stroke="rgba(120,90,255,0.25)" stroke-width="1.5"/>
+    <path d="M0,300 C 240,260 420,340 640,300 C 860,260 1020,320 1240,300 C 1380,286 1460,300 1536,300"
+          fill="none" stroke="rgba(70,130,255,0.18)" stroke-width="1"/>
+  </svg>
 
-<div class="logo">
+  <header class="header">
+    <svg class="shield-icon" viewBox="0 0 100 112" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#5fc2ff"/>
+          <stop offset="100%" stop-color="#2f6dff"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 4 L92 20 V54 C92 82 74 100 50 108 C26 100 8 82 8 54 V20 Z"
+            fill="rgba(20,50,110,0.45)" stroke="url(#shieldGrad)" stroke-width="3.5"/>
+      <path d="M50 14 L82 27 V54 C82 76 68 90 50 97 C32 90 18 76 18 54 V27 Z"
+            fill="none" stroke="url(#shieldGrad)" stroke-width="1.5" opacity="0.6"/>
+      <!-- fingerprint -->
+      <g fill="none" stroke="#eaf6ff" stroke-width="2" stroke-linecap="round">
+        <path d="M50 34 a16 16 0 0 1 16 16 v10"/>
+        <path d="M50 30 a20 20 0 0 1 20 20 v14"/>
+        <path d="M50 38 a12 12 0 0 1 12 12 v12"/>
+        <path d="M50 46 a8 8 0 0 1 8 8 v14"/>
+        <path d="M42 40 a4 4 0 0 0 -4 4 v22"/>
+        <path d="M50 54 v20"/>
+        <circle cx="50" cy="30" r="2.2" fill="#eaf6ff" stroke="none"/>
+        <circle cx="38" cy="38" r="1.8" fill="#eaf6ff" stroke="none"/>
+        <circle cx="58" cy="60" r="1.8" fill="#eaf6ff" stroke="none"/>
+      </g>
+    </svg>
+    <div class="title-block">
+      <h1>FraudShield <span>AI</span></h1>
+      <p class="tagline">Detect scams before they <span class="accent">steal your money</span>.</p>
+    </div>
+  </header>
 
-<h1>🛡 FraudShield <span>AI</span></h1>
+  <main class="panel">
+    <div class="textarea-wrap">
+      <svg class="textarea-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        <line x1="7" y1="9" x2="15" y2="9"/>
+        <line x1="7" y1="13" x2="12" y2="13"/>
+      </svg>
+      <textarea placeholder="Paste suspicious message here..." aria-label="Paste suspicious message here"></textarea>
+    </div>
 
-<p>
-Detect phishing, scam messages and fraud in seconds using AI.
-</p>
+    <button class="analyze-btn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      Analyze Scam
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 6 15 12 9 18"/>
+      </svg>
+    </button>
+  </main>
 
-</div>
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9.5 2a3.5 3.5 0 0 0-3.5 3.5v.5A3.5 3.5 0 0 0 2.5 9.5v0A3.5 3.5 0 0 0 6 13v0"/>
+          <path d="M14.5 2A3.5 3.5 0 0 1 18 5.5v.5a3.5 3.5 0 0 1 3.5 3.5v0A3.5 3.5 0 0 1 18 13v0"/>
+          <path d="M6 13a3.5 3.5 0 0 0 3.5 3.5v1A3.5 3.5 0 0 0 13 21v0"/>
+          <path d="M18 13a3.5 3.5 0 0 1-3.5 3.5v1"/>
+          <path d="M9.5 5.5v11"/>
+          <path d="M14.5 5.5v11"/>
+        </svg>
+      </div>
+      <div>
+        <h3>AI Powered</h3>
+        <p>Advanced AI detects scam patterns instantly.</p>
+      </div>
+    </div>
 
-<div class="card">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="11" width="16" height="10" rx="2"/>
+          <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+        </svg>
+      </div>
+      <div>
+        <h3>100% Private</h3>
+        <p>Your data is encrypted and never stored.</p>
+      </div>
+    </div>
 
-<textarea
-placeholder="Paste suspicious message here..."
-></textarea>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="6" y1="20" x2="6" y2="14"/>
+          <line x1="12" y1="20" x2="12" y2="9"/>
+          <line x1="18" y1="20" x2="18" y2="4"/>
+        </svg>
+      </div>
+      <div>
+        <h3>Risk Score</h3>
+        <p>Get a risk percentage with detailed insights.</p>
+      </div>
+    </div>
+  </section>
 
-<button>
-
-🔍 Analyze Scam
-
-</button>
-
-</div>
-
-<div class="features">
-
-<div class="feature">
-
-<h2>⚡</h2>
-
-<h3>AI Powered</h3>
-
-<p>Detects scam patterns instantly.</p>
-
-</div>
-
-<div class="feature">
-
-<h2>🔒</h2>
-
-<h3>Private</h3>
-
-<p>Your messages are never stored.</p>
-
-</div>
-
-<div class="feature">
-
-<h2>📊</h2>
-
-<h3>Risk Score</h3>
-
-<p>Get confidence percentage.</p>
-
-</div>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
+  <div class="footer-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2 L20 6 V12 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 12 V6 Z"/>
+      <polyline points="9 12 11 14 15 10"/>
+    </svg>
+    Stay Alert. Stay Safe. <span class="brand">FraudShield AI</span> Protects.
+  </div>
 
 </body>
-
 </html>
