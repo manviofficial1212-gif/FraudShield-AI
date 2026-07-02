@@ -294,3 +294,88 @@ padding:20px;
 }
 
 }
+/* ========================= */
+/* LOADING SCREEN */
+/* ========================= */
+
+.loading-screen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    background: linear-gradient(-45deg,#020617,#0f172a,#1e3a8a,#312e81);
+    background-size: 400% 400%;
+    animation: bgAnimation 8s ease infinite;
+
+    z-index: 9999;
+}
+
+@keyframes bgAnimation{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* Scanner Card */
+
+.scanner-card{
+    text-align:center;
+    z-index:2;
+}
+
+.scanner-card h2{
+    margin-top:30px;
+    font-size:42px;
+    color:white;
+}
+
+.scanner-card h3{
+    margin-top:15px;
+    color:#8bdcff;
+    font-weight:400;
+}
+
+/* Scanner Circle */
+
+.scanner-circle{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    position:relative;
+    margin:auto;
+}
+
+.scanner-ring{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    border:6px solid cyan;
+    animation:spin 2s linear infinite;
+    box-shadow:0 0 40px cyan;
+}
+
+.scanner-core{
+    position:absolute;
+    width:80px;
+    height:80px;
+    background:cyan;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    filter:blur(12px);
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
