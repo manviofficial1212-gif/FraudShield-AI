@@ -24,6 +24,28 @@
 
     <!-- Animated Background -->
     <div class="background"></div>
+    <div class="particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+<div class="network">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
 
     <div class="container">
 
@@ -62,12 +84,36 @@
                 Analyze Scam
             </button>
             <div id="resultCard" class="result-card">
+            <div class="scan-line"></div>
 
     <h2>🛡 Analysis Result</h2>
 
-    <div class="risk-score">
+    <div class="risk-circle">
+
+    <svg width="200" height="200">
+
+        <circle
+            class="bg-circle"
+            cx="100"
+            cy="100"
+            r="80">
+        </circle>
+
+        <circle
+            id="progressCircle"
+            class="progress-circle"
+            cx="100"
+            cy="100"
+            r="80">
+        </circle>
+
+    </svg>
+
+    <div class="risk-text">
         <span id="riskPercent">0%</span>
     </div>
+
+</div>
 
     <h3 id="riskLevel">Analyzing...</h3>
 
@@ -90,6 +136,41 @@
         </p>
 
     </div>
+    <div class="dashboard-stats">
+
+    <div class="stat-card">
+
+        <h4>🤖 AI Confidence</h4>
+
+        <p id="confidenceScore">98%</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h4>🎯 Scam Type</h4>
+
+        <p id="scamType">Phishing</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h4>⚠ Severity</h4>
+
+        <p id="severityLevel">Critical</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h4>🌍 Target</h4>
+
+        <p id="targetType">Banking</p>
+
+    </div>
+
+</div>
 
 </div>
 
@@ -217,7 +298,7 @@
         </div>
 
     </div>
-
+    <div class="cursor-glow"></div>
     <script src="script.js"></script>
 
 </body>

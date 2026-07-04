@@ -632,6 +632,83 @@ width:100%;
     color:white;
 
 }
+/* ========================= */
+/* Circular Risk Meter */
+/* ========================= */
+
+.risk-circle{
+
+    position:relative;
+
+    width:200px;
+
+    height:200px;
+
+    margin:25px auto;
+
+}
+
+.risk-circle svg{
+
+    transform:rotate(-90deg);
+
+}
+
+.bg-circle{
+
+    fill:none;
+
+    stroke:rgba(255,255,255,.15);
+
+    stroke-width:12;
+
+}
+
+.progress-circle{
+
+    fill:none;
+
+    stroke:#00d4ff;
+
+    stroke-width:12;
+
+    stroke-linecap:round;
+
+    stroke-dasharray:503;
+
+    stroke-dashoffset:503;
+
+    transition:stroke-dashoffset 1.5s ease;
+
+    filter:drop-shadow(0 0 12px cyan);
+
+}
+
+.risk-text{
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+}
+
+.risk-text span{
+
+    font-size:52px;
+
+    font-weight:700;
+
+    color:#00d4ff;
+
+    text-shadow:0 0 18px cyan;
+
+}
 
 .risk-score{
 
@@ -680,5 +757,363 @@ width:100%;
     background:rgba(0,212,255,.08);
 
     border-left:4px solid #00d4ff;
+
+}
+.result-card.glow{
+
+    animation:resultGlow 1s ease;
+
+}
+
+@keyframes resultGlow{
+
+    0%{
+
+        box-shadow:0 0 0px cyan;
+
+    }
+
+    50%{
+
+        box-shadow:0 0 45px cyan;
+
+    }
+
+    100%{
+
+        box-shadow:0 0 20px cyan;
+
+    }
+
+}
+/* ========================= */
+/* Floating Cyber Particles */
+/* ========================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-1;
+    pointer-events:none;
+}
+
+.particles span{
+
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:#00eaff;
+
+    box-shadow:0 0 12px cyan;
+
+    animation:float 12s linear infinite;
+
+    opacity:.7;
+
+}
+
+/* Random positions */
+
+.particles span:nth-child(1){
+left:10%;
+animation-duration:9s;
+animation-delay:0s;
+}
+
+.particles span:nth-child(2){
+left:25%;
+animation-duration:14s;
+animation-delay:2s;
+}
+
+.particles span:nth-child(3){
+left:40%;
+animation-duration:10s;
+animation-delay:1s;
+}
+
+.particles span:nth-child(4){
+left:55%;
+animation-duration:13s;
+animation-delay:4s;
+}
+
+.particles span:nth-child(5){
+left:70%;
+animation-duration:8s;
+animation-delay:2s;
+}
+
+.particles span:nth-child(6){
+left:82%;
+animation-duration:11s;
+animation-delay:3s;
+}
+
+.particles span:nth-child(7){
+left:92%;
+animation-duration:9s;
+animation-delay:5s;
+}
+
+.particles span:nth-child(8){
+left:50%;
+animation-duration:15s;
+animation-delay:0s;
+}
+
+@keyframes float{
+
+    from{
+        transform:translateY(100vh);
+    }
+
+    to{
+        transform:translateY(-100px);
+    }
+
+}
+/* ========================= */
+/* AI Network Background */
+/* ========================= */
+
+.network{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-2;
+    pointer-events:none;
+}
+
+.network span{
+
+    position:absolute;
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#00eaff;
+
+    box-shadow:0 0 12px cyan;
+
+}
+
+.network span::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:1px;
+
+    background:rgba(0,234,255,.25);
+
+    transform-origin:left center;
+
+}
+
+/* Node Positions */
+
+.network span:nth-child(1){
+top:15%;
+left:10%;
+}
+
+.network span:nth-child(2){
+top:30%;
+left:35%;
+}
+
+.network span:nth-child(3){
+top:18%;
+left:70%;
+}
+
+.network span:nth-child(4){
+top:60%;
+left:20%;
+}
+
+.network span:nth-child(5){
+top:70%;
+left:55%;
+}
+
+.network span:nth-child(6){
+top:50%;
+left:85%;
+}
+
+/* Line Angles */
+
+.network span:nth-child(1)::after{
+transform:rotate(22deg);
+}
+
+.network span:nth-child(2)::after{
+transform:rotate(-18deg);
+}
+
+.network span:nth-child(3)::after{
+transform:rotate(38deg);
+}
+
+.network span:nth-child(4)::after{
+transform:rotate(-28deg);
+}
+
+.network span:nth-child(5)::after{
+transform:rotate(15deg);
+}
+
+.network span:nth-child(6)::after{
+transform:rotate(-40deg);
+}
+/* ========================= */
+/* Mouse Glow */
+/* ========================= */
+
+.cursor-glow{
+
+    position:fixed;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+    rgba(0,234,255,.25),
+    transparent 70%);
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    z-index:-1;
+
+    transition:transform .08s linear;
+
+    filter:blur(10px);
+
+}
+/* ========================= */
+/* AI Scan Beam */
+/* ========================= */
+
+.result-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.scan-line{
+
+    position:absolute;
+
+    left:-100%;
+
+    top:0;
+
+    width:60%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,255,255,.35),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+}
+
+.scan-line.active{
+
+    animation:scanBeam 1.8s ease;
+}
+
+@keyframes scanBeam{
+
+    from{
+        left:-100%;
+    }
+
+    to{
+        left:160%;
+    }
+
+}
+/* ========================= */
+/* Dashboard Stats */
+/* ========================= */
+
+.dashboard-stats{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+margin-top:35px;
+
+}
+
+.stat-card{
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:18px;
+
+padding:22px;
+
+text-align:center;
+
+backdrop-filter:blur(15px);
+
+transition:.35s;
+
+}
+
+.stat-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 0 25px rgba(0,212,255,.25);
+
+}
+
+.stat-card h4{
+
+color:#8bdcff;
+
+margin-bottom:12px;
+
+font-size:17px;
+
+}
+
+.stat-card p{
+
+font-size:26px;
+
+font-weight:700;
+
+color:white;
 
 }
