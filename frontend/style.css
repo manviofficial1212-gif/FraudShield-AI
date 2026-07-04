@@ -411,36 +411,48 @@ width:100%;
 /* Scanner Circle */
 
 .scanner-circle{
-    width:180px;
-    height:180px;
-    border-radius:50%;
+    width:170px;
+    height:170px;
+
     position:relative;
+
     margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .scanner-ring{
-    width:100%;
-    height:100%;
+    position:absolute;
+    width:220px;
+    height:220px;
+    border:8px solid #00eaff;
     border-radius:50%;
-    border:6px solid cyan;
-    animation:spin 2s linear infinite;
-    box-shadow:0 0 40px cyan;
+    box-shadow:
+        0 0 25px #00eaff,
+        0 0 60px rgba(0,234,255,.6);
+
+    animation:spin 3s linear infinite;
 }
+
 
 .scanner-core{
     position:absolute;
-    width:80px;
-    height:80px;
-    background:cyan;
+    width:90px;
+    height:90px;
     border-radius:50%;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    filter:blur(12px);
+    background:radial-gradient(circle,#00ffff,#008cff);
+    filter:blur(18px);
+    opacity:.7;
 }
-
 @keyframes spin{
-    100%{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
         transform:rotate(360deg);
     }
 }
@@ -533,5 +545,140 @@ width:100%;
     color:#cbd5e1;
 
     line-height:1.8;
+
+}
+.loading-logo{
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 100px;
+    height: 100px;
+
+    transform: translate(-50%, -50%);
+
+    object-fit: contain;
+
+    z-index: 5;
+
+    filter: drop-shadow(0 0 15px #00e5ff);
+
+    animation: logoPulse 2s ease-in-out infinite;
+}
+@keyframes logoPulse{
+
+    0%{
+        transform:translate(-50%,-50%) scale(1);
+        filter:drop-shadow(0 0 10px cyan);
+    }
+
+    50%{
+        transform:translate(-50%,-50%) scale(1.12);
+        filter:drop-shadow(0 0 30px cyan);
+    }
+
+    100%{
+        transform:translate(-50%,-50%) scale(1);
+        filter:drop-shadow(0 0 10px cyan);
+    }
+
+}
+.result-card{
+
+    display:none;
+
+    margin-top:35px;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+    backdrop-filter:blur(20px);
+
+    text-align:left;
+
+    animation:fadeUp .5s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.result-card h2{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    font-size:32px;
+
+    color:white;
+
+}
+
+.risk-score{
+
+    text-align:center;
+
+    margin:20px 0;
+
+}
+
+#riskPercent{
+
+    font-size:64px;
+
+    font-weight:700;
+
+    color:#00d4ff;
+
+    text-shadow:0 0 15px rgba(0,212,255,.5);
+
+}
+
+#riskLevel{
+
+    text-align:center;
+
+    margin:15px 0;
+
+}
+
+.findings ul{
+
+    margin-left:20px;
+
+    line-height:2;
+
+}
+
+.recommendation{
+
+    margin-top:25px;
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:rgba(0,212,255,.08);
+
+    border-left:4px solid #00d4ff;
 
 }
