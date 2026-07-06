@@ -1117,3 +1117,82 @@ font-weight:700;
 color:white;
 
 }
+/* ========================= */
+/* AI Evidence Panel */
+/* ========================= */
+
+.evidence-panel{
+
+    margin-top:35px;
+
+    padding:25px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    backdrop-filter:blur(15px);
+
+}
+
+.evidence-panel h3{
+
+    margin-bottom:25px;
+
+    text-align:center;
+
+    color:#00d4ff;
+
+    font-size:24px;
+
+}
+
+.evidence-item{
+
+    margin-bottom:22px;
+
+}
+
+.evidence-item span{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:white;
+
+    font-weight:500;
+
+}
+
+.bar{
+
+    width:100%;
+
+    height:14px;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.fill{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:linear-gradient(90deg,#00d4ff,#2563eb);
+
+    transition:width 1.2s ease;
+
+    box-shadow:0 0 12px rgba(0,212,255,.5);
+
+}

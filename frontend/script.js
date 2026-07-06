@@ -11,6 +11,10 @@ const riskPercent = document.getElementById("riskPercent");
 const riskLevel = document.getElementById("riskLevel");
 const findingsList = document.getElementById("findingsList");
 const recommendationText = document.getElementById("recommendationText");
+const barUrgency = document.getElementById("barUrgency");
+const barLinks = document.getElementById("barLinks");
+const barSensitive = document.getElementById("barSensitive");
+const barBank = document.getElementById("barBank");
 
 
 button.addEventListener("click", () => {
@@ -163,6 +167,40 @@ else{
     targetType.innerHTML = "None";
 
 }
+barUrgency.style.width = "0%";
+barLinks.style.width = "0%";
+barSensitive.style.width = "0%";
+barBank.style.width = "0%";
+
+setTimeout(() => {
+
+    if(score >= 80){
+
+        barUrgency.style.width = "95%";
+        barLinks.style.width = "82%";
+        barSensitive.style.width = "88%";
+        barBank.style.width = "96%";
+
+    }
+    else if(score >= 50){
+
+        barUrgency.style.width = "65%";
+        barLinks.style.width = "55%";
+        barSensitive.style.width = "60%";
+        barBank.style.width = "58%";
+
+    }
+    else{
+
+        barUrgency.style.width = "15%";
+        barLinks.style.width = "10%";
+        barSensitive.style.width = "20%";
+        barBank.style.width = "12%";
+
+    }
+
+},400);
+
 
 // Radius = 80
 const circumference = 2 * Math.PI * 80;
