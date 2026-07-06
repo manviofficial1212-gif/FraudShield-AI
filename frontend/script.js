@@ -1,3 +1,5 @@
+
+const aiExplanation = document.getElementById("aiExplanation");
 const scamBadge = document.getElementById("scamBadge");
 const confidenceScore = document.getElementById("confidenceScore");
 const scamType = document.getElementById("scamType");
@@ -16,8 +18,146 @@ const barUrgency = document.getElementById("barUrgency");
 const barLinks = document.getElementById("barLinks");
 const barSensitive = document.getElementById("barSensitive");
 const barBank = document.getElementById("barBank");
+const bankThreat = document.getElementById("bankThreat");
+const upiThreat = document.getElementById("upiThreat");
+const arrestThreat = document.getElementById("arrestThreat");
+const deliveryThreat = document.getElementById("deliveryThreat");
+
+const bankPercent = document.getElementById("bankPercent");
+const upiPercent = document.getElementById("upiPercent");
+const arrestPercent = document.getElementById("arrestPercent");
+const deliveryPercent = document.getElementById("deliveryPercent");
+const historyList = document.getElementById("historyList");
+function saveScan(message, score, level){
+
+    let history = JSON.parse(localStorage.getItem("fraudHistory")) || [];
+
+    history.unshift({
+
+        message: message.substring(0,40) + "...",
+        score: score,
+        level: level,
+        time: new Date().toLocaleTimeString()
+
+    });
+
+    if(history.length > 5){
+
+        history.pop();
+
+    }
+
+    localStorage.setItem("fraudHistory", JSON.stringify(history));
+
+}
+function loadHistory(){
+
+    const historyList = document.getElementById("historyList");
+
+    let history = JSON.parse(localStorage.getItem("fraudHistory")) || [];
+
+    historyList.innerHTML = "";
+
+    if(history.length === 0){
+
+        historyList.innerHTML = "<p>No scans yet.</p>";
+        return;
+
+    }
+
+    history.forEach(scan => {
+
+        historyList.innerHTML += `
+        <div class="history-item">
+
+            <div>
+                <strong>${scan.level}</strong><br>
+                <small>${scan.message}</small>
+            </div>
+
+            <div>
+                <strong>${scan.score}%</strong><br>
+                <small>${scan.time}</small>
+            </div>
+
+        </div>
+        `;
+
+    });
+
+}
+function typeWriter(element, text, speed = 20){
+
+    element.innerHTML = "";
+
+    let i = 0;
+
+    const typing = setInterval(() => {
+
+        if(i >= text.length){
+
+            clearInterval(typing);
+
+        }
+        else{
+
+            element.innerHTML += text.charAt(i);
+
+            i++;
+
+        }
+
+    }, speed);
+
+}
 
 
+function animateThreatBar(bar, label, value){
+
+    bar.style.width = value + "%";
+
+    let current = 0;
+
+    const timer = setInterval(() => {
+
+        if(current >= value){
+
+            clearInterval(timer);
+
+        }else{
+
+            current++;
+
+            label.innerHTML = current + "%";
+
+        }
+
+    },15);
+
+    // Change color automatically
+
+    if(value >= 80){
+
+        bar.style.background =
+        "linear-gradient(90deg,#ef4444,#dc2626)";
+
+    }
+
+    else if(value >= 50){
+
+        bar.style.background =
+        "linear-gradient(90deg,#facc15,#f59e0b)";
+
+    }
+
+    else{
+
+        bar.style.background =
+        "linear-gradient(90deg,#22c55e,#16a34a)";
+
+    }
+
+}
 button.addEventListener("click", () => {
 
     const message = textarea.value.trim();
@@ -29,6 +169,7 @@ button.addEventListener("click", () => {
     document.getElementById("progressCircle").style.strokeDashoffset = 503;
     document.getElementById("riskPercent").innerHTML = "0%";
 
+    aiExplanation.innerHTML = "🤖 FraudShield AI is analyzing...";
     loadingScreen.style.display = "flex";
     const steps = [
         "🤖 Initializing AI...",
@@ -119,7 +260,28 @@ button.addEventListener("click", () => {
         recommendation =
         "No major scam indicators found, but always stay cautious.";
     }
+    let explanation = "";
 
+if(score >= 80){
+
+    explanation =
+    "FraudShield AI detected multiple phishing indicators including urgency language, banking-related keywords, requests for sensitive information, and suspicious links. This closely resembles known phishing attacks targeting financial accounts.";
+
+}
+else if(score >= 50){
+
+    explanation =
+    "The message contains several suspicious characteristics. Although it may not be an obvious scam, verification is recommended before taking any action.";
+
+}
+else{
+
+    explanation =
+    "The message does not contain strong phishing indicators. However, FraudShield AI recommends remaining cautious and avoiding sharing sensitive information.";
+
+}
+
+typeWriter(aiExplanation, explanation);
     let current = 0;
 
 const counter = setInterval(() => {
@@ -257,6 +419,8 @@ progressCircle.style.strokeDashoffset = offset;
     });
 
     document.getElementById("recommendationText").innerHTML = recommendation;
+    saveScan(message, score, level);
+    loadHistory();
 
     const result = document.getElementById("resultCard");
 
@@ -277,6 +441,45 @@ setTimeout(() => {
 },1800);
 
     },1000);
+    let bankValue = 8;
+let upiValue = 6;
+let arrestValue = 5;
+let deliveryValue = 5;
+
+if(text.includes("bank") || text.includes("kyc")){
+
+    bankValue = 95;
+
+}
+
+if(text.includes("upi") || text.includes("payment")){
+
+    upiValue = 90;
+
+}
+
+if(text.includes("police") ||
+   text.includes("cbi") ||
+   text.includes("arrest")){
+
+    arrestValue = 92;
+
+}
+
+if(text.includes("delivery") ||
+   text.includes("courier")){
+
+    deliveryValue = 85;
+
+}
+
+animateThreatBar(bankThreat, bankPercent, bankValue);
+
+animateThreatBar(upiThreat, upiPercent, upiValue);
+
+animateThreatBar(arrestThreat, arrestPercent, arrestValue);
+
+animateThreatBar(deliveryThreat, deliveryPercent, deliveryValue);
 
     document.getElementById("resultCard").scrollIntoView({
         behavior:"smooth"
@@ -292,3 +495,4 @@ document.addEventListener("mousemove", (e) => {
     glow.style.top = e.clientY + "px";
 
 });
+loadHistory();
