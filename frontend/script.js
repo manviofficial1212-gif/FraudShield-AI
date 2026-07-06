@@ -28,6 +28,12 @@ const upiPercent = document.getElementById("upiPercent");
 const arrestPercent = document.getElementById("arrestPercent");
 const deliveryPercent = document.getElementById("deliveryPercent");
 const historyList = document.getElementById("historyList");
+const chatBox = document.getElementById("chatBox");
+const askAI = document.getElementById("askAI");
+const userQuestion = document.getElementById("userQuestion");
+let lastScore = 0;
+let lastLevel = "";
+let lastFindings = [];
 function saveScan(message, score, level){
 
     let history = JSON.parse(localStorage.getItem("fraudHistory")) || [];
@@ -195,7 +201,7 @@ button.addEventListener("click", () => {
         }
 
     },1000);
-
+    
     setTimeout(() => {
 
     clearInterval(interval);
@@ -421,6 +427,9 @@ progressCircle.style.strokeDashoffset = offset;
     document.getElementById("recommendationText").innerHTML = recommendation;
     saveScan(message, score, level);
     loadHistory();
+    lastScore = score;
+    lastLevel = level;
+    lastFindings = findings;
 
     const result = document.getElementById("resultCard");
 
@@ -496,3 +505,65 @@ document.addEventListener("mousemove", (e) => {
 
 });
 loadHistory();
+askAI.addEventListener("click", () => {
+
+    const question = userQuestion.value.trim();
+
+    if(question === "") return;
+
+    chatBox.innerHTML += `
+        <div class="user-message">
+            ${question}
+        </div>
+    `;
+
+    let answer = "";
+
+    const q = question.toLowerCase();
+
+    if(q.includes("why")){
+
+    answer =
+    `The last scan was ${lastLevel} with a risk score of ${lastScore}%.
+
+Detected indicators:
+${lastFindings.join(", ")}.`;
+
+    }
+    
+    else if(q.includes("safe")){
+
+        answer = "Avoid clicking links or sharing OTPs unless you have verified the sender through an official source.";
+
+    }
+    else if(q.includes("bank")){
+
+        answer = "Banks never ask for OTP, PIN, CVV, or passwords through SMS, email, or phone calls.";
+
+    }
+    else if(q.includes("report")){
+
+        answer = "You can report cyber fraud on the National Cyber Crime Portal or call the cybercrime helpline.";
+
+    }
+    else{
+
+        answer = "I can help explain phishing indicators, scam types, banking fraud, and online safety based on this scan.";
+
+    }
+
+    setTimeout(() => {
+
+        chatBox.innerHTML += `
+            <div class="ai-message">
+                ${answer}
+            </div>
+        `;
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+    }, 500);
+
+    userQuestion.value = "";
+
+});
