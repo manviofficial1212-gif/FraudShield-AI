@@ -1,3 +1,4 @@
+const scamBadge = document.getElementById("scamBadge");
 const confidenceScore = document.getElementById("confidenceScore");
 const scamType = document.getElementById("scamType");
 const severityLevel = document.getElementById("severityLevel");
@@ -188,8 +189,7 @@ setTimeout(() => {
         barLinks.style.width = "55%";
         barSensitive.style.width = "60%";
         barBank.style.width = "58%";
-
-    }
+    }   
     else{
 
         barUrgency.style.width = "15%";
@@ -200,6 +200,36 @@ setTimeout(() => {
     }
 
 },400);
+if(text.includes("bank") || text.includes("kyc")){
+
+    scamBadge.innerHTML = "🏦 BANKING PHISHING";
+
+}
+else if(text.includes("upi") || text.includes("payment")){
+
+    scamBadge.innerHTML = "💳 UPI PAYMENT SCAM";
+
+}
+else if(text.includes("police") || text.includes("cbi") || text.includes("arrest")){
+
+    scamBadge.innerHTML = "👮 DIGITAL ARREST SCAM";
+
+}
+else if(text.includes("job") || text.includes("interview")){
+
+    scamBadge.innerHTML = "💼 JOB SCAM";
+
+}
+else if(text.includes("delivery") || text.includes("courier")){
+
+    scamBadge.innerHTML = "📦 DELIVERY SCAM";
+
+}
+else{
+
+    scamBadge.innerHTML = "⚠ SUSPICIOUS MESSAGE";
+
+}
 
 
 // Radius = 80

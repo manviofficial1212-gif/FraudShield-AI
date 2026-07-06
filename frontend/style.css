@@ -1196,3 +1196,52 @@ color:white;
     box-shadow:0 0 12px rgba(0,212,255,.5);
 
 }
+/* ========================= */
+/* Scam Category Badge */
+/* ========================= */
+
+.scam-badge{
+
+    width:fit-content;
+
+    margin:20px auto;
+
+    padding:12px 24px;
+
+    border-radius:40px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:white;
+
+    background:linear-gradient(135deg,#2563eb,#00d4ff);
+
+    box-shadow:0 0 20px rgba(0,212,255,.35);
+
+    animation:pulseBadge 2s infinite;
+
+}
+
+@keyframes pulseBadge{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.05);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
