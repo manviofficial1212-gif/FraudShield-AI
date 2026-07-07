@@ -31,6 +31,7 @@ const historyList = document.getElementById("historyList");
 const chatBox = document.getElementById("chatBox");
 const askAI = document.getElementById("askAI");
 const userQuestion = document.getElementById("userQuestion");
+const downloadReport = document.getElementById("downloadReport");
 let lastScore = 0;
 let lastLevel = "";
 let lastFindings = [];
@@ -502,6 +503,37 @@ document.addEventListener("mousemove", (e) => {
 
     glow.style.left = e.clientX + "px";
     glow.style.top = e.clientY + "px";
+
+});
+downloadReport.addEventListener("click", () => {
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    doc.setFontSize(22);
+    doc.text("FraudShield AI Report", 20, 20);
+
+    doc.setFontSize(12);
+    doc.text("Date: " + new Date().toLocaleString(), 20, 35);
+
+    doc.text("Risk Score: " + riskPercent.innerHTML, 20, 50);
+    doc.text("Risk Level: " + riskLevel.innerHTML, 20, 60);
+
+    doc.text("Scam Type: " + scamType.innerHTML, 20, 70);
+    doc.text("Severity: " + severityLevel.innerHTML, 20, 80);
+    doc.text("Target: " + targetType.innerHTML, 20, 90);
+
+    doc.text("Recommendation:", 20, 110);
+
+    doc.text(
+        recommendationText.innerHTML,
+        20,
+        120,
+        { maxWidth: 170 }
+    );
+
+    doc.save("FraudShield_AI_Report.pdf");
 
 });
 loadHistory();
