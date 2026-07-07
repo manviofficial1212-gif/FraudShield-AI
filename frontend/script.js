@@ -567,3 +567,14 @@ ${lastFindings.join(", ")}.`;
     userQuestion.value = "";
 
 });
+document.querySelectorAll(".quick-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        userQuestion.value = button.innerText;
+
+        askAI.click();
+
+    });
+
+});

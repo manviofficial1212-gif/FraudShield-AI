@@ -1545,3 +1545,46 @@ color:white;
     transform:scale(1.05);
 
 }
+/* Quick AI Buttons */
+
+.quick-questions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:18px;
+
+}
+
+.quick-btn{
+
+    padding:10px 16px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:rgba(0,212,255,.12);
+
+    color:#00d4ff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.quick-btn:hover{
+
+    background:#00d4ff;
+
+    color:#111;
+
+    transform:translateY(-3px);
+
+}
