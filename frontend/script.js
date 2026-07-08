@@ -34,6 +34,7 @@ const userQuestion = document.getElementById("userQuestion");
 const downloadReport = document.getElementById("downloadReport");
 const imageUpload = document.getElementById("imageUpload");
 const ocrStatus = document.getElementById("ocrStatus");
+const analyzeBtn = document.getElementById("analyzeBtn");
 let lastScore = 0;
 let lastLevel = "";
 let lastFindings = [];
@@ -754,16 +755,17 @@ document.querySelectorAll(".quick-btn").forEach(button => {
     });
 
 });
-console.log(imageUpload);
-imageUpload.addEventListener("change", async (e) => {
-    alert("Image selected!");
 
-    const file = e.target.files[0];
+imageUpload.addEventListener("change", async (e) => {
+    
+
+const file = e.target.files[0];
 
     if(!file) return;
 
     ocrStatus.innerHTML =
     "🔍 Extracting text from screenshot...";
+    
 
     try{
 
@@ -779,6 +781,7 @@ imageUpload.addEventListener("change", async (e) => {
 
         ocrStatus.innerHTML =
         "✅ Text extracted successfully!";
+        analyzeBtn.click();
 
     }
     catch(error){
