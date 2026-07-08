@@ -81,18 +81,22 @@ git clone https://github.com/manviofficial1212-gif/FraudShield-AI.git
 3. Run using Live Server
 
 
-📌 Future Improvements
-Gemini API integration
-Multilingual OCR
-Real-time URL scanning
-Dark/Light mode
-Mobile responsiveness
+## 📌 Future Improvements
 
-👩‍💻 Developer
-Manvi Gupta
+- 🤖 Gemini API integration
+- 🌐 Multilingual OCR support
+- 🔗 Real-time URL scanning
+- 🌙 Dark/Light mode
+- 📱 Mobile responsiveness
 
-LinkedIn:
+---
+
+## 👩‍💻 Developer
+
+**Manvi Gupta**
+
+**LinkedIn:**  
 https://www.linkedin.com/in/manvi-gupta-5a954b37a
 
-GitHub:
+**GitHub:**  
 https://github.com/manviofficial1212-gif
