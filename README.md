@@ -75,9 +75,11 @@ FraudShield-AI/
 
 ```bash
 git clone https://github.com/manviofficial1212-gif/FraudShield-AI.git
+```
 
 2. Open the frontend folder
 3. Run using Live Server
+
 
 📌 Future Improvements
 Gemini API integration
