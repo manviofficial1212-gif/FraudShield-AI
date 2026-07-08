@@ -32,6 +32,8 @@ const chatBox = document.getElementById("chatBox");
 const askAI = document.getElementById("askAI");
 const userQuestion = document.getElementById("userQuestion");
 const downloadReport = document.getElementById("downloadReport");
+const imageUpload = document.getElementById("imageUpload");
+const ocrStatus = document.getElementById("ocrStatus");
 let lastScore = 0;
 let lastLevel = "";
 let lastFindings = [];
@@ -750,5 +752,42 @@ document.querySelectorAll(".quick-btn").forEach(button => {
         askAI.click();
 
     });
+
+});
+console.log(imageUpload);
+imageUpload.addEventListener("change", async (e) => {
+    alert("Image selected!");
+
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+    ocrStatus.innerHTML =
+    "🔍 Extracting text from screenshot...";
+
+    try{
+
+        const result = await Tesseract.recognize(
+            file,
+            "eng"
+        );
+
+        const extractedText =
+        result.data.text.trim();
+
+        textarea.value = extractedText;
+
+        ocrStatus.innerHTML =
+        "✅ Text extracted successfully!";
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        ocrStatus.innerHTML =
+        "❌ Failed to read screenshot.";
+
+    }
 
 });
