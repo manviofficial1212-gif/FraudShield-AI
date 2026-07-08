@@ -2,7 +2,7 @@
   <img src="assets/logo.png" width="180">
 </p>
 
-<h1 align="center">🛡️ FraudShield AI</h1>
+<h1 align="center"> FraudShield AI</h1>
 
 <p align="center">
 AI-powered scam detection platform for SMS, Emails, URLs and Screenshot Analysis.
@@ -15,7 +15,7 @@ AI-powered scam detection platform for SMS, Emails, URLs and Screenshot Analysis
   <img src="https://img.shields.io/badge/Python-Flask-green">
 </p>
 
-# 🛡️ FraudShield AI
+# FraudShield AI
 
 FraudShield AI is an AI-powered scam detection platform that helps users identify phishing messages, fake links, online fraud, and suspicious screenshots.
 
