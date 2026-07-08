@@ -762,17 +762,26 @@ imageUpload.addEventListener("change", async (e) => {
 const file = e.target.files[0];
 
     if(!file) return;
+    const previewImage = document.getElementById("previewImage");
 
-    ocrStatus.innerHTML =
-    "🔍 Extracting text from screenshot...";
-    
+previewImage.src = URL.createObjectURL(file);
 
-    try{
+document.querySelector(".image-preview").style.display = "block";
 
-        const result = await Tesseract.recognize(
-            file,
-            "eng"
-        );
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+ocrStatus.innerHTML = "🤖 AI Vision is preparing...";
+
+await new Promise(resolve => setTimeout(resolve, 800));
+
+ocrStatus.innerHTML = "🔍 Extracting text from screenshot...";
+try{
+
+const result = await Tesseract.recognize(
+    file,
+    "eng"
+);
+
 
         const extractedText =
         result.data.text.trim();

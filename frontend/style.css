@@ -1673,3 +1673,36 @@ color:white;
     font-size:14px;
 
 }
+/* ========================= */
+/* Screenshot Preview */
+/* ========================= */
+
+.image-preview{
+
+    display:none;
+    margin-top:20px;
+
+    text-align:center;
+
+}
+
+.image-preview img{
+
+    width:100%;
+    max-width:400px;
+
+    border-radius:16px;
+
+    border:2px solid rgba(255,255,255,.08);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+    transition:.35s ease;
+
+}
+
+.image-preview img:hover{
+
+    transform:scale(1.02);
+
+}
