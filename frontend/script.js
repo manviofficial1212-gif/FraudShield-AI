@@ -768,10 +768,12 @@ const file = e.target.files[0];
 previewImage.src = URL.createObjectURL(file);
 
 document.querySelector(".image-preview").style.display = "block";
+const scanLine = document.querySelector(".scan-line");
+scanLine.style.display = "block";
 
     await new Promise(resolve => setTimeout(resolve, 1200));
 
-loadingOverlay.style.display = "flex";
+loadingScreen.style.display = "flex";
 ocrStatus.innerHTML = "🤖 AI Vision is preparing...";
 
 await new Promise(resolve => setTimeout(resolve, 800));
@@ -793,17 +795,20 @@ textarea.value = extractedText;
 
 // Trigger input event in case your app listens for it
 textarea.dispatchEvent(new Event("input"));
+scanLine.style.display = "none";
 
 ocrStatus.innerHTML = "✅ Text extracted successfully!";
 
 setTimeout(() => {
-    analyzeBtn.click();
+   loadingScreen.style.display = "none";
+analyzeBtn.click();
 }, 100);
 
     }
     catch(error){
 
         console.error(error);
+        scanLine.style.display = "none";
         
 
         ocrStatus.innerHTML =
