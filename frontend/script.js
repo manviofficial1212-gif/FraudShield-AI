@@ -179,7 +179,11 @@ function animateThreatBar(bar, label, value){
 
 }
 button.addEventListener("click", () => {
+    resultCard.style.display = "none";
+    resultCard.style.opacity = "0";
+    resultCard.style.transform = "translateY(40px) scale(.96)";
 
+    
     const message = textarea.value.trim();
 
     if(message === ""){
@@ -350,7 +354,23 @@ const counter = setInterval(() => {
     else{
     progressCircle.style.stroke = "#00ff88";   // Green
 }
-confidenceScore.innerHTML = Math.min(score + 5, 99) + "%";
+let confidence = 0;
+
+const finalConfidence = Math.min(score + 5, 99);
+
+const confidenceCounter = setInterval(() => {
+
+    confidence++;
+
+    confidenceScore.innerHTML = confidence + "%";
+
+    if(confidence >= finalConfidence){
+
+        clearInterval(confidenceCounter);
+
+    }
+
+},20);
 
 if(score >= 80){
 
@@ -470,6 +490,16 @@ progressCircle.style.strokeDashoffset = offset;
     const result = document.getElementById("resultCard");
 
     result.style.display = "block";
+
+result.style.opacity = "0";
+result.style.transform = "translateY(40px) scale(.96)";
+
+setTimeout(() => {
+
+    result.style.opacity = "1";
+    result.style.transform = "translateY(0) scale(1)";
+
+},50);
 
     result.classList.add("glow");
     setTimeout(()=>{

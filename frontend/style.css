@@ -597,13 +597,18 @@ width:100%;
     background:rgba(255,255,255,.08);
 
     border:1px solid rgba(255,255,255,.15);
+
     box-shadow:0 10px 30px rgba(0,0,0,.35);
 
     backdrop-filter:blur(20px);
 
     text-align:left;
 
-    animation:fadeUp .5s ease;
+    opacity:0;
+
+    transform:translateY(40px) scale(.96);
+
+    transition:all .6s ease;
 
 }
 
