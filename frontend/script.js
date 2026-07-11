@@ -35,6 +35,7 @@ const downloadReport = document.getElementById("downloadReport");
 const imageUpload = document.getElementById("imageUpload");
 const ocrStatus = document.getElementById("ocrStatus");
 const analyzeBtn = document.getElementById("analyzeBtn");
+
 let lastScore = 0;
 let lastLevel = "";
 let lastFindings = [];
@@ -770,6 +771,7 @@ document.querySelector(".image-preview").style.display = "block";
 
     await new Promise(resolve => setTimeout(resolve, 1200));
 
+loadingOverlay.style.display = "flex";
 ocrStatus.innerHTML = "🤖 AI Vision is preparing...";
 
 await new Promise(resolve => setTimeout(resolve, 800));
@@ -783,19 +785,26 @@ const result = await Tesseract.recognize(
 );
 
 
-        const extractedText =
-        result.data.text.trim();
+        const extractedText = result.data.text.trim();
 
-        textarea.value = extractedText;
+console.log("OCR Text:", extractedText);
 
-        ocrStatus.innerHTML =
-        "✅ Text extracted successfully!";
-        analyzeBtn.click();
+textarea.value = extractedText;
+
+// Trigger input event in case your app listens for it
+textarea.dispatchEvent(new Event("input"));
+
+ocrStatus.innerHTML = "✅ Text extracted successfully!";
+
+setTimeout(() => {
+    analyzeBtn.click();
+}, 100);
 
     }
     catch(error){
 
         console.error(error);
+        
 
         ocrStatus.innerHTML =
         "❌ Failed to read screenshot.";
