@@ -313,16 +313,18 @@ else{
 
 }
 
-typeWriter(aiExplanation, explanation);
+
     let current = 0;
 
 const counter = setInterval(() => {
 
-    if(current >= score){
+   if(current >= score){
 
-        clearInterval(counter);
+    clearInterval(counter);
 
-    }
+    typeWriter(aiExplanation, explanation);
+
+}
 
     document.getElementById("riskPercent").innerHTML = current + "%";
 
