@@ -1194,6 +1194,8 @@ color:white;
     transition:width 1.2s ease;
 
     box-shadow:0 0 12px rgba(0,212,255,.5);
+    transform-origin: left;
+    will-change: width;
 
 }
 /* ========================= */

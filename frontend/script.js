@@ -97,6 +97,15 @@ function loadHistory(){
     });
 
 }
+function animateBar(bar, value){
+
+    bar.style.width = "0%";
+
+    setTimeout(() => {
+        bar.style.width = value;
+    }, 100);
+
+}
 function typeWriter(element, text, speed = 20){
 
     element.innerHTML = "";
@@ -364,6 +373,7 @@ else{
     targetType.innerHTML = "None";
 
 }
+
 barUrgency.style.width = "0%";
 barLinks.style.width = "0%";
 barSensitive.style.width = "0%";
@@ -373,25 +383,23 @@ setTimeout(() => {
 
     if(score >= 80){
 
-        barUrgency.style.width = "95%";
-        barLinks.style.width = "82%";
-        barSensitive.style.width = "88%";
-        barBank.style.width = "96%";
-
+        animateBar(barUrgency, "95%");
+    animateBar(barLinks, "82%");
+    animateBar(barSensitive, "88%");
+    animateBar(barBank, "96%");
     }
     else if(score >= 50){
 
-        barUrgency.style.width = "65%";
-        barLinks.style.width = "55%";
-        barSensitive.style.width = "60%";
-        barBank.style.width = "58%";
+        animateBar(barUrgency, "65%");
+        animateBar(barLinks, "55%");
+        animateBar(barSensitive, "60%");
+        animateBar(barBank, "58%");
     }   
     else{
-
-        barUrgency.style.width = "15%";
-        barLinks.style.width = "10%";
-        barSensitive.style.width = "20%";
-        barBank.style.width = "12%";
+        animateBar(barUrgency, "15%");
+        animateBar(barLinks, "10%");
+        animateBar(barSensitive, "20%");
+        animateBar(barBank, "12%");
 
     }
 
