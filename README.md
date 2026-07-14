@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" width="180">
+  <img src="frontend/assets/logo.png" width="180" alt="FraudShield AI Logo">
 </p>
 
 <h1 align="center"> FraudShield AI</h1>
@@ -65,7 +65,7 @@ FraudShield-AI/
 - Font Awesome
 
 ### Backend
-- Python (Flask)
+- Planned for future integration (Python/Flask)
 
 
 ## 🚀 How to Run
