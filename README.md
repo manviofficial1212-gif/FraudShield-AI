@@ -28,15 +28,14 @@ Built for the **ET AI Hackathon 2026**.
 FraudShield-AI/
 │
 ├── frontend/
+│   ├── assets/
+│   │   └── logo.png
 │   ├── index.html
-│   ├── script.js
 │   ├── style.css
+│   └── script.js
 │
 ├── backend/
-│   ├── app.py
-│
-├── assets/
-│   └── logo.png
+│   └── app.py
 │
 └── README.md
 ```
@@ -79,6 +78,11 @@ git clone https://github.com/manviofficial1212-gif/FraudShield-AI.git
 
 2. Open the frontend folder
 3. Run using Live Server
+
+
+## 🔗 Live Demo
+
+👉 **https://fraud-shield-ai-ruby.vercel.app**
 
 
 ## 📌 Future Improvements
