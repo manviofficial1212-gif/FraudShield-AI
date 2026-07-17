@@ -51,6 +51,24 @@ FraudShield-AI/
 - ✅ Scan History
 - ✅ AI Assistant
 
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+![Home](screenshots/home.png)
+
+### 📊 Scam Analysis
+
+![Analysis](screenshots/analysis.png)
+
+### 📷 OCR Screenshot Analysis
+
+![OCR](screenshots/ocr.png)
+
+### 💬 AI Chatbot
+
+![Chatbot](screenshots/chatbot.png)
+
 
 ## 🛠️ Technologies Used
 
